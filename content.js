@@ -113,6 +113,32 @@ function checkHtmlContent() {
   });
 }
 
+function fillAndSubmitForm(keyword) {
+  // Get the form element
+  const form = document.querySelector('form[action="https://lists.mcs.anl.gov/mailman/mmsearch/hpc-announce"]');
+
+  // Set the values of the select elements
+  form.querySelector('select[name="method"]').value = "and";
+  form.querySelector('select[name="format"]').value = "short";
+  form.querySelector('select[name="sort"]').value = "time";
+
+  // Set the value of the search input
+  form.querySelector('input[type="text"][name="words"]').value = keyword;
+
+  // Submit the form
+  form.submit();
+}
+
+// Listen for messages from the background script
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  if (request.action === "submitForm") {
+    fillAndSubmitForm(request.data);
+  }
+});
+
+// Send a message to the background script to create the context menu
+// chrome.runtime.sendMessage({ action: "createContextMenu" });
+
 // Call the updateInfo function when the page is loaded or changed
 checkRadioButton();
 checkHtmlContent();
