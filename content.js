@@ -16,6 +16,9 @@ function checkRadioButton() {
     const div = radio.parentElement.querySelector('.hidden');
     const className = div ? div.innerText.trim() : '';
 
+    radio.style.width = '50px';
+    radio.style.height = '50px';
+
     if (!counts[className]) {
       counts[className] = {
         total: 0,
