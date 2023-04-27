@@ -123,6 +123,17 @@ function checkHtmlContent() {
   });
 }
 
+function prefillSearchPage() {
+  if (document.body.innerText.indexOf("The hpc-announce Archives") === -1) {
+    return;
+  }
+  // Find the "sort" drop-down selection
+  const sortSelection = document.querySelector('select[name="sort"]');
+
+  // Set the value of the "sort" drop-down selection to "time"
+  sortSelection.value = 'time';
+}
+
 function fillAndSubmitForm(keyword) {
   // Get the form element
   const form = document.querySelector('form[action="https://lists.mcs.anl.gov/mailman/mmsearch/hpc-announce"]');
@@ -152,6 +163,7 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
 // Call the updateInfo function when the page is loaded or changed
 checkRadioButton();
 checkHtmlContent();
+prefillSearchPage();
 
 window.addEventListener("load", checkRadioButton);
 window.addEventListener("hashchange", checkRadioButton);
