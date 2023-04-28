@@ -97,13 +97,13 @@ function checkHtmlContent() {
       bgColor = "#ffd";
     }
 
-    if (content.includes('<html') || content.includes('html>')) {
+    if (content.includes('<html') || content.includes('</html>')) {
       hasHtmlContent = true;
       text = "Has HTML content";
       bgColor = "#cf1b1b";
     }
 
-    if (content.includes('<div') || content.includes('div>')) {
+    if (content.includes('<div') || content.includes('</div>')) {
       hasHtmlContent = true;
       text = "Has HTML content";
       bgColor = "#cf1b1b";
