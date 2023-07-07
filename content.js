@@ -109,7 +109,6 @@ function checkHtmlContent() {
       bgColor = "#cf1b1b";
     }
 
-
     // Create a new element to display the textarea information
     const textareaElement = document.createElement("div");
     textareaElement.style.marginBottom = "10px";
@@ -120,6 +119,25 @@ function checkHtmlContent() {
 
     // Add the textarea element to the page
     textarea.parentElement.insertBefore(textareaElement, textarea);
+
+    if (hasHtmlContent) {
+      let replyareaName = textarea.name.replace("fulltext", "comment");
+      replyarea = document.getElementsByName(replyareaName)[0];
+      replyarea.value = "Your post is rejected because it contains HTML content. Please resend it in plain-text format.";
+
+      const msgId = textarea.name.match(/\d+/)[0];
+      const selector = `input[type="radio"][name="${msgId}"]`;
+      const actionButtons = document.querySelectorAll(selector);
+
+      actionButtons.forEach(radio => {
+        const div = radio.parentElement.querySelector('.hidden');
+        const className = div ? div.innerText.trim() : '';
+
+        if (className == "Reject") {
+          radio.checked = true
+        }
+      });
+    }
   });
 }
 
