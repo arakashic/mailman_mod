@@ -3,6 +3,17 @@
   "name": "Mailman Moderator",
   "version": "1.0",
   "description": "Help moderating Mailman based mailing list",
+  "permissions": [
+      "contextMenus",
+      "scripting",
+      "tabs"
+  ],
+  "host_permissions": [
+      "https://*.anl.gov/*"
+  ],
+  "background": {
+      "service_worker": "background.js"
+  },
   "icons": {
     "16": "icon-16.png",
     "48": "icon-48.png",
