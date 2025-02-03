@@ -123,7 +123,7 @@ function checkHtmlContent() {
     if (hasHtmlContent) {
       let replyareaName = textarea.name.replace("fulltext", "comment");
       replyarea = document.getElementsByName(replyareaName)[0];
-      replyarea.value = "Your post is rejected because it contains HTML content. Please resend it in plain-text format.";
+      replyarea.value = "Your post is rejected because it contains HTML content. Please resend it in plain-text format. Please note that Microsoft Outlook will add HTML formatting by default regardless the actual content of a email. Please consider using the Outlook Web App to manually set the email format to plain-text.";
 
       const msgId = textarea.name.match(/\d+/)[0];
       const selector = `input[type="radio"][name="${msgId}"]`;
